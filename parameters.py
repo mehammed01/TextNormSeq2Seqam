@@ -13,7 +13,7 @@ logger = logging.getLogger("main")
 parser = argparse.ArgumentParser(description='train.py')
 ## Data options
 parser.add_argument('-traindata', default='dataset/azztrain.json', help='Path to train data file')
-parser.add_argument('-testdata', default='dataset/azztest.json',help='Path to the test data file')
+parser.add_argument('-testdata', default='dataset/azezz.json',help='Path to the test data file')
 parser.add_argument('-valsplit', type=int, default=0,help='Number of examples for validation')
 parser.add_argument('-vocab_size', type=int, default=None, help='Limit vocabulary')
 parser.add_argument('-lowercase', action='store_true', default=False,help='Converting to lowercase')
@@ -44,7 +44,7 @@ parser.add_argument('-backward_splits', type=int, default=None,help='Backward wi
 parser.add_argument('-teacher_forcing_ratio', type=float, default=0.6,help='Probablity of using teacher forcing (scheduled sampling)')
 parser.add_argument('-noise_ratio', type=float, default=0.4,help='% extra noise to add')
 ## Training
-parser.add_argument('-batch_size', type=int, default=32,help='Training batch size')
+parser.add_argument('-batch_size', type=int, default=64,help='Training batch size')
 parser.add_argument('-start_epoch', type=int, default=1,help='Epoch to start training.')
 parser.add_argument('-end_epoch', type=int, default=1,help='Number of supervised learning epochs')
 parser.add_argument('-optim', default='adam', choices=['sgd', 'adam', 'adagrad', 'adadelta'],help='Optimization method.')
@@ -53,7 +53,7 @@ parser.add_argument('-max_grad_norm', type=float, default=5,help='Clip gradients
 parser.add_argument('-learning_rate_decay', type=float, default=0.05,help='Multiply learning with this value after -start_decay_after epochs')
 parser.add_argument('-start_decay_after', type=int, default=15,help='Decay learning rate AFTER this epoch')
 ## GPU
-parser.add_argument('-gpu', type=int, default=0,help='GPU id. Support single GPU only')
+parser.add_argument('-gpu', type=int, default=-1,help='GPU id. Support single GPU only')
 parser.add_argument('-log_interval', type=int, default=1,help='Print stats after that many training steps')
 parser.add_argument('-save_interval', type=int, default=-1,help='Save model and evaluate after that many training steps')
 parser.add_argument('-seed', type=int, default=3435,help='Random seed')
@@ -63,7 +63,7 @@ parser.add_argument('-load_from', type=str, help='Path to a model checkpoint')
 ## Inference
 parser.add_argument('-eval', action='store_true',help='Evaluatation only mode')
 parser.add_argument('-interactive', action='store_true',help='Interactive mode')
-parser.add_argument('-max_train_decode_len', type=int, default=50,help='Max decoding length during training')
+parser.add_argument('-max_train_decode_len', type=int, default=150,help='Max decoding length during training')
 opt = parser.parse_args()
 
 def change_args(opt):
