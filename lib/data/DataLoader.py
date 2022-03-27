@@ -240,14 +240,16 @@ def create_datasets(opt):
 
 def read_file(fn, valsplit=None):
     tweets = []
-    with open(fn, 'r') as json_data:
+    with open(fn, 'r',encoding="utf-8") as json_data:
         data = json.load(json_data)
     for tweet in data:
         src_tweet = tweet['input']
         tgt_tweet = tweet['output']
         ind = tweet['index']
-        tid = tweet['tid']
-        tweets.append(Tweet(src_tweet, tgt_tweet, tid, ind))
+        # tid = tweet['tid']
+        lenal = tweet['lenal']
+        ar = tweet['ar']
+        tweets.append(Tweet(src_tweet, tgt_tweet, ind,lenal,ar))
     if(valsplit):
         random.shuffle(tweets)
         val = tweets[:valsplit]
