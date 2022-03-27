@@ -53,7 +53,7 @@ parser.add_argument('-max_grad_norm', type=float, default=5,help='Clip gradients
 parser.add_argument('-learning_rate_decay', type=float, default=0.05,help='Multiply learning with this value after -start_decay_after epochs')
 parser.add_argument('-start_decay_after', type=int, default=15,help='Decay learning rate AFTER this epoch')
 ## GPU
-parser.add_argument('-gpu', type=int, default=-1,help='GPU id. Support single GPU only')
+parser.add_argument('-gpu', type=int, default=0,help='GPU id. Support single GPU only')
 parser.add_argument('-log_interval', type=int, default=1,help='Print stats after that many training steps')
 parser.add_argument('-save_interval', type=int, default=-1,help='Save model and evaluate after that many training steps')
 parser.add_argument('-seed', type=int, default=3435,help='Random seed')
