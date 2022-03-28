@@ -149,9 +149,13 @@ class Seq2Seq(nn.Module):
                 all_attention_weights[t] = attention_weights.cpu().data
             prob, token_ids = decoder_output.data.topk(1)
             token_ids = token_ids.squeeze()
+            
+            lll=token_ids.cpu()
             prob = prob.squeeze()
-            preds[t,:] = token_ids
-            probs[t,:] = prob
+            mmm=prob.cpu()
+            
+            preds[t,:] = lll
+            probs[t,:] = mmm
             input_seq = Variable(token_ids)
             if np.sum(np.equal(token_ids.cpu().numpy(),end_of_batch_pred)) == len(src):
                 break
