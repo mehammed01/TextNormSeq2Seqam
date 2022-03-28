@@ -33,8 +33,8 @@ parser.add_argument('-layers', type=int, default=1,help='Number of layers in the
 parser.add_argument('-brnn', action='store_true', default=False,help='Use a bidirectional encoder')
 parser.add_argument('-rnn_size', type=int, default=300,help='RNN cell hidden size')
 parser.add_argument('-emb_size', type=int, default=100,help='Embedding size')
-parser.add_argument('-attention', action='store_true', default=False,help='Use attention')
-parser.add_argument('-bias', action='store_true', default=False,help='Add bias term')
+parser.add_argument('-attention', action='store_true', default=True,help='Use attention')
+parser.add_argument('-bias', action='store_true', default=True,help='Add bias term')
 parser.add_argument('-tie_decoder_embeddings', action='store_true', default=False,
                     help='Share parameters between decoder embeddings and output projection matrix. See https://arxiv.org/abs/1608.05859')
 parser.add_argument('-share_embeddings', action='store_true', default=False,
@@ -53,7 +53,7 @@ parser.add_argument('-max_grad_norm', type=float, default=5,help='Clip gradients
 parser.add_argument('-learning_rate_decay', type=float, default=0.05,help='Multiply learning with this value after -start_decay_after epochs')
 parser.add_argument('-start_decay_after', type=int, default=15,help='Decay learning rate AFTER this epoch')
 ## GPU
-parser.add_argument('-gpu', type=int, default=-1,help='GPU id. Support single GPU only')
+parser.add_argument('-gpu', type=int, default=0,help='GPU id. Support single GPU only')
 parser.add_argument('-log_interval', type=int, default=1,help='Print stats after that many training steps')
 parser.add_argument('-save_interval', type=int, default=-1,help='Save model and evaluate after that many training steps')
 parser.add_argument('-seed', type=int, default=3435,help='Random seed')
