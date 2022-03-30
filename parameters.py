@@ -12,14 +12,14 @@ logger = logging.getLogger("main")
 
 parser = argparse.ArgumentParser(description='train.py')
 ## Data options
-parser.add_argument('-traindata', default='dataset/train_data.json', help='Path to train data file')
-parser.add_argument('-testdata', default='dataset/test_truth.json',help='Path to the test data file')
+parser.add_argument('-traindata', default='dataset/azztrain.json', help='Path to train data file')
+parser.add_argument('-testdata', default='dataset/trainsemnorm.json',help='Path to the test data file')
 parser.add_argument('-valsplit', type=int, default=0,help='Number of examples for validation')
 parser.add_argument('-vocab_size', type=int, default=None, help='Limit vocabulary')
 parser.add_argument('-lowercase', action='store_true', default=False,help='Converting to lowercase')
 parser.add_argument('-share_vocab', action='store_true',default=False,help='Shared vocabulary btw source and target')
-parser.add_argument('-eos',action='store_true', default=False,help='Adding EOS token at the end of each sequence')
-parser.add_argument('-bos',action='store_true', default=False,help='Adding BOS token in the beginning of each sequence')
+parser.add_argument('-eos',action='store_true', default=True,help='Adding EOS token at the end of each sequence')
+parser.add_argument('-bos',action='store_true', default=True,help='Adding BOS token in the beginning of each sequence')
 parser.add_argument('-self_tok', action='store_true',default=False, help='Special token @self to indicate that the input is to be left alone')
 parser.add_argument('-input', default='word', choices=['word', 'char', 'spelling', 'hybrid'],
                     help='character or word level representation, spelling (character model trained on pairs of words) and hybrid (word+spelling)')
@@ -39,7 +39,7 @@ parser.add_argument('-tie_decoder_embeddings', action='store_true', default=Fals
                     help='Share parameters between decoder embeddings and output projection matrix. See https://arxiv.org/abs/1608.05859')
 parser.add_argument('-share_embeddings', action='store_true', default=False,
                     help='Share the word embeddings between encoder and decoder. Drastically reduces number of learned parameters.')
-parser.add_argument('-dropout', type=float, default=0.2,help='Dropout input of every RNN layer.')
+parser.add_argument('-dropout', type=float, default=0.1,help='Dropout input of every RNN layer.')
 parser.add_argument('-backward_splits', type=int, default=None,help='Backward with smaller batches to save memory.')
 parser.add_argument('-teacher_forcing_ratio', type=float, default=0.6,help='Probablity of using teacher forcing (scheduled sampling)')
 parser.add_argument('-noise_ratio', type=float, default=0.4,help='% extra noise to add')
@@ -63,7 +63,7 @@ parser.add_argument('-load_from', type=str, help='Path to a model checkpoint')
 ## Inference
 parser.add_argument('-eval', action='store_true',help='Evaluatation only mode')
 parser.add_argument('-interactive', action='store_true',help='Interactive mode')
-parser.add_argument('-max_train_decode_len', type=int, default=50,help='Max decoding length during training')
+parser.add_argument('-max_train_decode_len', type=int, default=150,help='Max decoding length during training')
 opt = parser.parse_args()
 
 def change_args(opt):
@@ -88,5 +88,3 @@ def change_args(opt):
             logger.warning('src/tgt vocab should be the same if you use share_embeddings! Changing share_vocab to True.')
             opt.share_vocab = True
     return opt
-
-
