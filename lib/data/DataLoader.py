@@ -246,8 +246,10 @@ def read_file(fn, valsplit=None):
         src_tweet = tweet['input']
         tgt_tweet = tweet['output']
         ind = tweet['index']
-        tid = tweet['tid']
-        tweets.append(Tweet(src_tweet, tgt_tweet, tid, ind))
+        #tid = tweet['tid']
+        lenal = tweet['lenal']
+        ar = tweet['ar']
+        tweets.append(Tweet(src_tweet, tgt_tweet,  ind,lenal,ar))
     if(valsplit):
         random.shuffle(tweets)
         val = tweets[:valsplit]
