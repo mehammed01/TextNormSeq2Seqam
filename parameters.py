@@ -12,8 +12,8 @@ logger = logging.getLogger("main")
 
 parser = argparse.ArgumentParser(description='train.py')
 ## Data options
-parser.add_argument('-traindata', default='dataset/azztrain.json', help='Path to train data file')
-parser.add_argument('-testdata', default='dataset/trainsemnorm.json',help='Path to the test data file')
+parser.add_argument('-traindata', default='dataset/long.json', help='Path to train data file')
+parser.add_argument('-testdata', default='dataset/haadegy.json',help='Path to the test data file')
 parser.add_argument('-valsplit', type=int, default=0,help='Number of examples for validation')
 parser.add_argument('-vocab_size', type=int, default=None, help='Limit vocabulary')
 parser.add_argument('-lowercase', action='store_true', default=False,help='Converting to lowercase')
@@ -44,9 +44,9 @@ parser.add_argument('-backward_splits', type=int, default=None,help='Backward wi
 parser.add_argument('-teacher_forcing_ratio', type=float, default=0.6,help='Probablity of using teacher forcing (scheduled sampling)')
 parser.add_argument('-noise_ratio', type=float, default=0.4,help='% extra noise to add')
 ## Training
-parser.add_argument('-batch_size', type=int, default=32,help='Training batch size')
+parser.add_argument('-batch_size', type=int, default=64,help='Training batch size')
 parser.add_argument('-start_epoch', type=int, default=1,help='Epoch to start training.')
-parser.add_argument('-end_epoch', type=int, default=1,help='Number of supervised learning epochs')
+parser.add_argument('-end_epoch', type=int, default=150,help='Number of supervised learning epochs')
 parser.add_argument('-optim', default='adam', choices=['sgd', 'adam', 'adagrad', 'adadelta'],help='Optimization method.')
 parser.add_argument('-lr', type=float, default=0.01,help='Initial learning rate')
 parser.add_argument('-max_grad_norm', type=float, default=5,help='Clip gradients by max global gradient norm. See https://arxiv.org/abs/1211.5063')
